@@ -2,22 +2,27 @@
 
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./todo.css/todo.css" type="text/css">
   </head>
 
 <body>
-    <p>"Todo"</p>
+  <h1>やることリスト</h1>
   <div id="app">
-      <input type="text" v-model="newToDo">
-      <button v-on:click="addNewTodo">Add</button>
-          <ul v-for="todo in todos">
-            <input type="checkbox" v-model="todo.done">
-            <span>{{todo.todo}}</span>
-          </ul>
-        <button v-on:click="deleteTodos">Delete</button>
-        <!-- <pre>{{$data}}</pre> -->
+    <input type="text" v-model="newToDo" class = "addtodo"　placeholder="ここにToDoを追加記載">
+      <ul v-for="todo in todos" v-bind:class="{done: todo.done}" class = "eachtodo">
+        <input type="checkbox" v-model="todo.done">
+        <span >{{todo.todo}}</span>
+      </ul>
+    <br>
+    <div id = "btn">
+      <button v-on:click="addNewTodo">追加</button>
+      <button v-on:click="deleteTodos">削除</button>
+    </div>
+    <!-- <pre>{{$data}}</pre> -->
   </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="./todo.js/todo.js"></script>
+
 </body>
 
 </html>

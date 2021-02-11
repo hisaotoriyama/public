@@ -17,8 +17,9 @@ var app = new Vue({
             this.newToDo = ""
         },
         deleteTodos: function(){
-            vvv = this.todos.filter(function(v) {return v["done"] === false})
-            localStorage.setItem('todoList', JSON.stringify(vvv));
+            alert("削除してよろしいですか")
+            selectedtodos = this.todos.filter(function(v) {return v["done"] === false})
+            localStorage.setItem('todoList', JSON.stringify(selectedtodos));
             this.todos = this.loadTodo()
         },
         loadTodo: function(){
