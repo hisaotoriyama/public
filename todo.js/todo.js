@@ -1,37 +1,33 @@
 var app = new Vue({
-    el: '#app',
-    data: {
-    　todos: [],
-    　newToDo:""
-      },
-    methods: {
-        addNewTodo: function(){
-            const newToDo = {
-                todo: this.newToDo,
-                done: false
-            }
-            alltodos = this.loadTodo()
-            alltodos != null ? alltodos.push(newToDo) : alltodos = [newToDo]
-            localStorage.setItem('todoList', JSON.stringify(alltodos));
-            this.todos = alltodos
-            this.newToDo = ""
-        },
-        deleteTodos: function(){
-            alert("削除してよろしいですか")
-            selectedtodos = this.todos.filter(function(v) {return v["done"] === false})
-            localStorage.setItem('todoList', JSON.stringify(selectedtodos));
-            this.todos = this.loadTodo()
-        },
-        loadTodo: function(){
-            var JSONalltodos = localStorage.getItem('todoList');
-            return JSON.parse(JSONalltodos)
-        }
+  el: '#app',
+  data: {
+　  todos: [],
+　  newToDo: ""
+  },
+  methods: {
+    addNewTodo: function(){
+      const newToDo = {
+        todo: this.newToDo,
+        done: false
+      }
+      allTodos = this.loadTodo()
+      allTodos != null ? allTodos.push(newToDo) : allTodos = [newToDo]
+      localStorage.setItem('todoList', JSON.stringify(allTodos));
+      this.todos = allTodos
+      this.newToDo = ""
     },
-    created:
-    function(){
-            this.todos = this.loadTodo()
-        },
-
-  })
-
-
+    deleteTodos: function(){
+      alert("削除してよろしいですか")
+      selectedTodos = this.todos.filter(function(v) {return v["done"] === false})
+      localStorage.setItem('todoList', JSON.stringify(selectedTodos));
+      this.todos = this.loadTodo()
+    },
+    loadTodo: function(){
+      const jsonAllTodos = localStorage.getItem('todoList');
+      return JSON.parse(jsonAllTodos)
+    }
+  },
+  created: function(){
+    this.todos = this.loadTodo()
+  },
+})
