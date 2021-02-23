@@ -10,7 +10,7 @@ var app = new Vue({
         todo: this.newToDo,
         done: false
       }
-      allTodos = this.loadTodo()
+      const allTodos = this.loadTodo()
       allTodos != null ? allTodos.push(newToDo) : allTodos = [newToDo]
       localStorage.setItem('todoList', JSON.stringify(allTodos));
       this.todos = allTodos
@@ -18,7 +18,7 @@ var app = new Vue({
     },
     deleteTodos: function(){
       alert("削除してよろしいですか")
-      selectedTodos = this.todos.filter(function(v) {return v["done"] === false})
+      const selectedTodos = this.todos.filter(function(v) {return v["done"] === false})
       localStorage.setItem('todoList', JSON.stringify(selectedTodos));
       this.todos = this.loadTodo()
     },
