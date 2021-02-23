@@ -6,12 +6,11 @@
   <body>
     <h1>やることリスト</h1>
     <div id="app">
-      <input type="text" v-model="newToDo" class="add-todo"　placeholder="ここにToDoを追加記載">
+      <input type="text" v-model="newTodoItem" class="add-todo"　placeholder="ここにTodoを追加記載">
       <ul v-for="todo in todos" v-bind:class="{done: todo.done}" class="each-todo">
         <input type="checkbox" v-model="todo.done">
         <span>{{todo.todo}}</span>
       </ul>
-      <br>
       <div class="btn">
         <button v-on:click="addNewTodo">追加</button>
         <button v-on:click="deleteTodos">削除</button>

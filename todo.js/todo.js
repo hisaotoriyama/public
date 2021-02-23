@@ -1,33 +1,44 @@
-var app = new Vue({
+new Vue({
   el: '#app',
   data: {
-　  todos: [],
-　  newToDo: ""
+    todos: [],
+    newTodoItem: ""
   },
   methods: {
-    addNewTodo: function(){
-      const newToDo = {
-        todo: this.newToDo,
+    addNewTodo: function() {
+      const newTodo = {
+        todo: this.newTodoItem,
         done: false
+      }　　　
+      if (this.newTodoItem == "") {
+        alert("Todoが入力されていません");
+        this.todos = this.loadTodo();
+      } else {
+        const allTodos = this.loadTodo();
+        if (allTodos !== null) {
+        　allTodos.push(newTodo);
+        } else {
+        　allTodos = [newTodo];
+        }
+        localStorage.setItem('todoList', JSON.stringify(allTodos));
+        this.todos = allTodos;
+        this.newTodoItem = "";
       }
-      const allTodos = this.loadTodo()
-      allTodos != null ? allTodos.push(newToDo) : allTodos = [newToDo]
-      localStorage.setItem('todoList', JSON.stringify(allTodos));
-      this.todos = allTodos
-      this.newToDo = ""
     },
-    deleteTodos: function(){
-      alert("削除してよろしいですか")
-      const selectedTodos = this.todos.filter(function(v) {return v["done"] === false})
-      localStorage.setItem('todoList', JSON.stringify(selectedTodos));
-      this.todos = this.loadTodo()
+    deleteTodos: function() {
+      const result = confirm("削除してよろしいですか");
+      if (result) {
+        const selectedTodos = this.todos.filter((v) => v["done"] === false);
+        localStorage.setItem('todoList', JSON.stringify(selectedTodos));
+      }
+      this.todos = this.loadTodo();
     },
-    loadTodo: function(){
+    loadTodo: function() {
       const jsonAllTodos = localStorage.getItem('todoList');
-      return JSON.parse(jsonAllTodos)
+      return JSON.parse(jsonAllTodos);
     }
   },
-  created: function(){
-    this.todos = this.loadTodo()
-  },
+  created: function() {
+    this.todos = this.loadTodo();
+  }
 })
