@@ -10,9 +10,8 @@ new Vue({
         todo: this.newTodoItem,
         done: false
       }　　　
-      if (this.newTodoItem == "") {
+      if (this.newTodoItem === "") {
         alert("Todoが入力されていません");
-        this.todos = this.loadTodo();
       } else {
         const allTodos = this.loadTodo();
         if (allTodos !== null) {
